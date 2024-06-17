@@ -1,3 +1,4 @@
 [build]
+  base = "frontend"     # Exact case-sensitive match
   command = "npm run build"
   publish = "build"
