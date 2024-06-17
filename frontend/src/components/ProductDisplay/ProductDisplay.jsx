@@ -8,8 +8,9 @@ const ProductDisplay = (props) => {
 
     const {addToCart} = useContext(ShopContext);
     const [selectedSize, setSelectedSize] = useState(null);
-    const [showPopup, setShowPopup] = useState(false);
-    const [selectedProduct, setSelectedProduct] = useState(null);
+    const [showNotification, setShowNotification] = useState(false); // Define showNotification state
+
+    const [, setSelectedProduct] = useState(null);
     const handleClick = (size) => {
         setSelectedSize(size);
       };
@@ -17,12 +18,14 @@ const ProductDisplay = (props) => {
       const handleAddToCart = (productId) => {
         addToCart(productId);
         setSelectedProduct(productId);
-        setShowPopup(true);
+        setShowNotification(product.name)
+        
     };
 
-    const handleContinueShopping = () => {
-        setShowPopup(false);
-    };
+    if (!product) {
+        return null; // or handle the case where product is not available
+    }
+    
     
   return (
     <div className='productdisplay'>
@@ -71,17 +74,13 @@ const ProductDisplay = (props) => {
                     {/* Add more size divs as needed */}
                 </div>
             </div>
-            <button onClick={()=> handleAddToCart(product.id)}>ADD TO CART</button>
-            {/* Popup */}
-            {showPopup && (
-                <div className="popup">
-                    <div className="popup-content">
-                        <span className="close" onClick={() => setShowPopup(false)}>&times;</span>
-                        <p>Item successfully added to cart !</p>
-                        <button className="pop-button"onClick={handleContinueShopping}>Continue Shopping</button>
+            <button onClick={() => handleAddToCart(product.id)}>ADD TO CART</button>
+                {/* Notification */}
+                {showNotification && (
+                    <div className="notification">
+                        <p>{product.name} added to cart!</p>
                     </div>
-                </div>
-            )}
+                )}
             <p className="productdisplay-right-category"><span>Category :</span>Women, T-Shirt ,Crop Top</p>
             <p className="productdisplay-right-category"><span>Tags:</span>Modern, Latest </p>
 
@@ -90,5 +89,6 @@ const ProductDisplay = (props) => {
     </div>
   )
 }
+
 
 export default ProductDisplay

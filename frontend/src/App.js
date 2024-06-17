@@ -5,6 +5,8 @@ import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import ShopCategory from './pages/ShopCategory';
 import Shop from './pages/Shop';
+import PlaceOrder from './components/PlaceOrder/PlaceOrder';
+import SuccessPage from './components/SuccessPage/SuccessPage'; // Import the SuccessPage
 import Product from './pages/Product';
 import Cart from './pages/Cart';
 import LoginSignup from './pages/LoginSignup';
@@ -14,6 +16,8 @@ import women_banner from './components/assets/banner_women.png'
 import kid_banner from './components/assets/banner_kids.png'
 import NewCollections from './components/NewCollections/NewCollections';
 import Hero from './components/Hero/Hero';
+import UserPanel from './components/UserPanel/UserPanel';
+
 
 
 function App() {
@@ -25,13 +29,15 @@ function App() {
         <Route path='/' element={<Shop/>}/>
         <Route path='/mens' element={<ShopCategory banner={men_banner} category="men"/>}/>
         <Route path='/womens' element={<ShopCategory banner={women_banner }category="women"/>}/>
-        <Route path='/kids' element={<ShopCategory banner={kid_banner} category="kid"/>}/>
+        <Route path='/kids' element={<ShopCategory banner={kid_banner} category="kids"/>}/>
         <Route path='/product' element={<Product/>}>
           <Route path=':productId' element={<Product/>}/>
         </Route>
         <Route path='/cart' element={<Cart/>}/>
+        <Route path="/success" element={<SuccessPage />}/>
+        <Route path="/userpanel" element={<UserPanel/>}/>
+        <Route path="/PlaceOrder" element={<PlaceOrder />} />
         <Route path='/login' element={<LoginSignup/>}/>
-        
         <Route path="/" element={<Hero />} />
           <Route path="/new-collections" element={<NewCollections />} />
     
